@@ -71,24 +71,84 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Enhanced Apple-inspired glassmorphism */
+        /* Enhanced Apple-inspired glassmorphism with more depth */
         .glass {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass:hover::before {
+            opacity: 1;
         }
 
         .glass-strong {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Apple-inspired Hero Section */
+        /* Dynamic atmospheric background */
+        .atmospheric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .atmospheric-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(52, 199, 89, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 10%, rgba(255, 159, 10, 0.08) 0%, transparent 30%);
+            animation: atmosphericFloat 25s ease-in-out infinite;
+        }
+
+        @keyframes atmosphericFloat {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1) translateY(0px); 
+                filter: blur(0px);
+            }
+            33% { 
+                transform: rotate(2deg) scale(1.05) translateY(-10px); 
+                filter: blur(2px);
+            }
+            66% { 
+                transform: rotate(-1deg) scale(1.02) translateY(5px); 
+                filter: blur(1px);
+            }
+        }
+
+        /* Enhanced Hero Section with dynamic personality */
         .hero {
             height: 100vh;
             position: relative;
@@ -100,24 +160,6 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(0, 122, 255, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(52, 199, 89, 0.06) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(2deg) scale(1.05); }
-        }
-
         .hero-content {
             z-index: 2;
             text-align: center;
@@ -127,129 +169,164 @@
 
         .hero h1 {
             font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
             margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease-out;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            animation: fadeInUpBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
             font-size: clamp(1.5rem, 4vw, 2.25rem);
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-            font-weight: 500;
-            letter-spacing: -0.01em;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 32px;
+            animation: fadeInUpBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0, 122, 255, 0.3);
         }
 
         .hero-description {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 48px;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-            max-width: 640px;
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 64px;
+            animation: fadeInUpBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            font-weight: 400;
         }
 
-        @keyframes fadeInUp {
+        @keyframes fadeInUpBounce {
             from {
                 opacity: 0;
-                transform: translateY(24px);
+                transform: translateY(60px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        /* Apple-inspired floating notch */
-        .floating-notch {
-            position: relative;
-            width: 280px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px;
-            margin: 40px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-notch:hover {
-            transform: translateY(-2px) scale(1.02);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .notch-content {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 0.01em;
-        }
-
-        /* Apple-inspired CTA */
+        /* Enhanced CTA with ripple effect and depth */
         .cta-button {
-            background: #007AFF;
+            background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%);
             color: white;
-            padding: 16px 32px;
+            padding: 20px 48px;
             border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
             display: inline-block;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
+            animation: fadeInUpBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
             letter-spacing: -0.01em;
-            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 122, 255, 0.4),
+                0 4px 16px rgba(0, 122, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0) scale(1);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .cta-button:hover {
-            background: #0056CC;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.4);
+            background: linear-gradient(135deg, #0056CC 0%, #003D99 100%);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 48px rgba(0, 122, 255, 0.5),
+                0 8px 24px rgba(0, 122, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .cta-button:active {
-            transform: translateY(0);
-            transition: transform 0.1s;
+            transform: translateY(-1px) scale(1.02);
+            transition: transform 0.1s ease;
         }
 
-        /* Enhanced Features Section */
+        /* Enhanced Features Section with narrative flow */
         .features {
-            padding: 120px 24px;
-            max-width: 1200px;
+            padding: 160px 24px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
+        }
+
+        .features-intro {
+            text-align: center;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .features-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-intro h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #ffffff;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-intro p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .feature {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 100px;
             align-items: center;
-            margin-bottom: 160px;
+            margin-bottom: 200px;
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(60px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .feature.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .feature:nth-child(even) {
@@ -260,131 +337,272 @@
             direction: ltr;
         }
 
+        .feature-content {
+            position: relative;
+        }
+
+        .feature-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.03) 0%, rgba(52, 199, 89, 0.02) 100%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .feature:hover .feature-content::before {
+            opacity: 1;
+        }
+
         .feature-content h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 32px;
             color: #ffffff;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
         }
 
         .feature-content p {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
             font-weight: 400;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
 
         .feature-keywords {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 24px;
         }
 
         .keyword-tag {
-            background: rgba(0, 122, 255, 0.1);
-            border: 1px solid rgba(0, 122, 255, 0.2);
-            color: #007AFF;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            background: rgba(0, 122, 255, 0.12);
+            border: 1px solid rgba(0, 122, 255, 0.25);
+            color: #4DA6FF;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyword-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
         .keyword-tag:hover {
-            background: rgba(0, 122, 255, 0.15);
-            transform: translateY(-1px);
+            background: rgba(0, 122, 255, 0.18);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+        }
+
+        .keyword-tag:hover::before {
+            left: 100%;
         }
 
         .feature-visual {
             position: relative;
-            height: 400px;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Apple-inspired placeholder boxes */
+        /* Enhanced interactive placeholder boxes */
         .feature-placeholder {
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 2px dashed rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.02) 0%, rgba(52, 199, 89, 0.01) 100%);
+            opacity: 0;
+            transition: all 0.6s ease;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
         }
 
         .feature-placeholder:hover {
-            border-color: rgba(0, 122, 255, 0.3);
-            background: rgba(0, 122, 255, 0.05);
+            border-color: rgba(0, 122, 255, 0.4);
+            background: rgba(0, 122, 255, 0.08);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.2);
+        }
+
+        .feature-placeholder:hover::before {
+            opacity: 1;
         }
 
         .placeholder-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            opacity: 0.5;
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            opacity: 0.6;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+        }
+
+        .feature-placeholder:hover .placeholder-icon {
+            opacity: 0.9;
+            transform: scale(1.1) translateY(-4px);
         }
 
         .placeholder-text {
-            font-size: 1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            max-width: 240px;
-            line-height: 1.4;
+            max-width: 280px;
+            line-height: 1.5;
+            transition: all 0.4s ease;
         }
 
-        /* Apple-inspired Stats Section */
+        .feature-placeholder:hover .placeholder-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Enhanced Stats Section with breathing animation */
         .stats-section {
-            padding: 80px 24px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 120px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, rgba(52, 199, 89, 0.01) 100%);
+            opacity: 0.5;
+            animation: statsGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes statsGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.02); }
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 60px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-item {
-            padding: 24px;
+            padding: 32px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.2);
+        }
+
+        .stat-item:hover::before {
+            opacity: 1;
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: #007AFF;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: block;
+            text-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+            text-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
         }
 
         .stat-label {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        /* Apple-inspired UI Gallery */
+        /* Enhanced UI Gallery with more personality */
         .ui-gallery {
-            padding: 120px 24px;
+            padding: 160px 24px;
             text-align: center;
             background: #000;
             position: relative;
@@ -392,375 +610,605 @@
 
         .ui-gallery h2 {
             font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-weight: 800;
+            margin-bottom: 32px;
             color: #ffffff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .ui-gallery-subtitle {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 64px;
-            max-width: 600px;
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 80px;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .gallery-item {
-            height: 280px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            height: 320px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            overflow: hidden;
+            padding: 32px;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(52, 199, 89, 0.03) 100%);
+            opacity: 0;
+            transition: all 0.5s ease;
         }
 
         .gallery-item:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 122, 255, 0.2);
+            transform: translateY(-12px) scale(1.03);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 122, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.25);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
         }
 
         .gallery-item h3 {
-            font-size: 1.125rem;
-            margin-bottom: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
             color: #fff;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            z-index: 1;
+            position: relative;
         }
 
         .gallery-item p {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            max-width: 280px;
-            line-height: 1.5;
+            max-width: 300px;
+            line-height: 1.6;
+            z-index: 1;
+            position: relative;
         }
 
         .gallery-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 24px;
             opacity: 0.8;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+            position: relative;
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
         }
 
-        /* Apple-inspired Pricing */
+        .gallery-item:hover .gallery-icon {
+            opacity: 1;
+            transform: scale(1.15) translateY(-8px);
+        }
+
+        /* Enhanced Pricing with more impact */
         .pricing {
-            padding: 120px 24px;
+            padding: 160px 24px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
         }
 
         .pricing h2 {
             font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-weight: 800;
+            margin-bottom: 32px;
             color: #ffffff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .pricing-subtitle {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 64px;
-            max-width: 600px;
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 80px;
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
         .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 20px;
-            padding: 64px 48px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 28px;
+            padding: 80px 56px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.03) 0%, rgba(52, 199, 89, 0.02) 50%, rgba(255, 159, 10, 0.02) 100%);
+            animation: pricingShimmer 6s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes pricingShimmer {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0; }
+            50% { transform: rotate(180deg) scale(1.1); opacity: 0.3; }
         }
 
         .pricing-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 122, 255, 0.2);
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(0, 122, 255, 0.3);
+            box-shadow: 0 32px 80px rgba(0, 122, 255, 0.2);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
         }
 
         .price {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             color: #007AFF;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .price-period {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
         }
 
         .price-desc {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 48px;
             font-weight: 400;
+            z-index: 1;
+            position: relative;
         }
 
         .pricing-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 48px 0;
             text-align: left;
+            z-index: 1;
+            position: relative;
         }
 
         .pricing-feature {
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.875rem;
-            font-weight: 500;
+            gap: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pricing-feature:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(0, 122, 255, 0.2);
+            transform: translateX(4px);
         }
 
         .pricing-feature::before {
             content: '✓';
             color: #34C759;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
         }
 
-        /* Apple-inspired Testimonials */
+        /* Enhanced Testimonials with more emotional impact */
         .testimonials {
-            padding: 120px 24px;
+            padding: 160px 24px;
             background: rgba(255, 255, 255, 0.02);
             position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, rgba(52, 199, 89, 0.01) 100%);
+            animation: testimonialGlow 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes testimonialGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
 
         .testimonials h2 {
             text-align: center;
             font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 64px;
+            font-weight: 800;
+            margin-bottom: 80px;
             color: #ffffff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.04) 0%, rgba(52, 199, 89, 0.02) 100%);
+            opacity: 0;
+            transition: all 0.5s ease;
         }
 
         .testimonial:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 122, 255, 0.1);
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 122, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.15);
+        }
+
+        .testimonial:hover::before {
+            opacity: 1;
         }
 
         .testimonial-text {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 24px;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 32px;
+            line-height: 1.7;
             font-weight: 400;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(0, 122, 255, 0.3);
+            position: absolute;
+            top: -16px;
+            left: -8px;
+            font-family: serif;
+            line-height: 1;
         }
 
         .testimonial-author {
-            font-weight: 600;
+            font-weight: 700;
             color: #007AFF;
-            font-size: 0.875rem;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
         }
 
         .testimonial-role {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 4px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 6px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Apple-inspired FAQ */
+        /* Enhanced FAQ with accordion personality */
         .faq {
-            padding: 120px 24px;
-            max-width: 800px;
+            padding: 160px 24px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .faq h2 {
             text-align: center;
             font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 64px;
+            font-weight: 800;
+            margin-bottom: 80px;
             color: #ffffff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 12px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .faq-item:hover {
-            border-color: rgba(0, 122, 255, 0.2);
+            border-color: rgba(0, 122, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .faq-item.active::before {
+            opacity: 1;
         }
 
         .faq-question {
-            padding: 24px;
+            padding: 32px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.875rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #fff;
-            transition: all 0.2s ease;
-        }
-
-        .faq-question:hover {
-            color: #007AFF;
-        }
-
-        .faq-answer {
-            padding: 0 24px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding-bottom: 24px;
-        }
-
-        .faq-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.25rem;
-            color: #007AFF;
-            font-weight: 300;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        /* Apple-inspired Footer */
-        .footer {
-            padding: 80px 24px 40px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            background: #000;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .footer-logo {
-            font-size: 1.75rem;
-            font-weight: 700;
+        .faq-question:hover {
+            color: #4DA6FF;
+        }
+
+        .faq-answer {
+            padding: 0 32px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 32px;
+        }
+
+        .faq-icon {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 1.5rem;
             color: #007AFF;
-            margin-bottom: 32px;
+            font-weight: 300;
+            text-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg) scale(1.1);
+            color: #34C759;
+            text-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+        }
+
+        /* Enhanced Footer with personality */
+        .footer {
+            padding: 120px 24px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, rgba(52, 199, 89, 0.01) 100%);
+            animation: footerGlow 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.5; }
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #007AFF;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 32px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 48px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            font-size: 0.875rem;
-            padding: 8px 12px;
-            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .footer-links a:hover {
             color: #007AFF;
             background: rgba(0, 122, 255, 0.1);
+            border-color: rgba(0, 122, 255, 0.2);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
         }
 
-        /* Enhanced scroll indicator */
+        /* Enhanced scroll indicator with more personality */
         .scroll-indicator {
             position: fixed;
             top: 50%;
-            right: 32px;
+            right: 40px;
             transform: translateY(-50%);
             z-index: 1000;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 16px 8px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px 10px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .scroll-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
-            margin: 16px 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 20px 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             position: relative;
         }
 
+        .scroll-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 122, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
         .scroll-dot.active {
             background: #007AFF;
-            transform: scale(1.5);
+            transform: scale(1.6);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
+        }
+
+        .scroll-dot.active::before {
+            width: 20px;
+            height: 20px;
         }
 
         .scroll-dot:hover {
             background: #007AFF;
-            transform: scale(1.2);
+            transform: scale(1.3);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
         }
 
-        /* Responsive Design */
+        /* Responsive Design with enhanced mobile experience */
         @media (max-width: 768px) {
+            .atmospheric-bg::before {
+                animation-duration: 15s;
+            }
+
             .feature {
                 grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 60px;
                 text-align: center;
-                margin-bottom: 80px;
+                margin-bottom: 120px;
             }
 
             .feature:nth-child(even) {
@@ -768,66 +1216,117 @@
             }
 
             .hero-subtitle {
-                font-size: 1.5rem;
+                font-size: 1.75rem;
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .feature-content h2 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .feature-content p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 32px;
+            }
+
+            .gallery-item {
+                height: 280px;
             }
 
             .testimonial-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 32px;
             }
 
             .footer-links {
                 flex-direction: column;
-                gap: 16px;
+                gap: 20px;
             }
 
             .scroll-indicator {
-                right: 16px;
-                padding: 12px 6px;
+                right: 20px;
+                padding: 16px 8px;
+            }
+
+            .scroll-dot {
+                width: 8px;
+                height: 8px;
+                margin: 16px 0;
             }
 
             .pricing-features {
                 grid-template-columns: 1fr;
-                text-align: center;
+                text-align: left;
             }
 
-            .floating-notch {
-                width: 90%;
-                max-width: 280px;
+            .pricing-card {
+                padding: 60px 32px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .feature-visual {
+                height: 400px;
             }
         }
 
-        /* Enhanced accessibility */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0 16px;
+            }
+
+            .features, .ui-gallery, .pricing, .testimonials, .faq {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                min-width: auto;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Enhanced accessibility and performance */
         @media (prefers-reduced-motion: reduce) {
-            * {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
+
+            .atmospheric-bg::before {
+                animation: none;
+            }
         }
 
-        /* Focus styles */
+        /* Enhanced focus styles for better accessibility */
         .keyboard-navigation *:focus {
-            outline: 2px solid #007AFF;
+            outline: 3px solid #007AFF;
             outline-offset: 2px;
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.3);
         }
 
         /* SEO Enhancement Sections */
@@ -835,23 +1334,63 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            margin: 32px 0;
-            opacity: 0.7;
+            gap: 16px;
+            margin: 40px 0;
+            opacity: 0.8;
         }
 
         .keyword-cloud .keyword-tag {
             font-size: 0.75rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
         }
 
         .keyword-cloud .keyword-tag:hover {
             opacity: 1;
-            transform: translateY(-1px);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Loading states and micro-interactions */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced button interactions */
+        .interactive-element {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-element::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .interactive-element:hover::after {
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
 <body>
+    <div class="atmospheric-bg"></div>
+
     <!-- Enhanced Scroll Indicator -->
     <div class="scroll-indicator">
         <div class="scroll-dot active" data-section="hero" title="NotchPro Home"></div>
@@ -861,18 +1400,14 @@
         <div class="scroll-dot" data-section="testimonials" title="Reviews"></div>
     </div>
 
-    <!-- Apple-inspired Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <h1>NotchPro</h1>
-            <p class="hero-subtitle">Dynamic Island for Mac</p>
-            <p class="hero-description">Transform your Mac notch with intelligent controls for AirPods battery, Spotify music, calendar reminders, and AI assistant. The most elegant macOS productivity experience.</p>
+            <p class="hero-subtitle">Your Mac's Hidden Superpower</p>
+            <p class="hero-description">Transform your MacBook's notch into the ultimate productivity command center. Monitor AirPods battery, control Spotify, manage calendar reminders, and chat with AI — all from the most elegant space on your screen.</p>
             
-            <div class="floating-notch" id="heroNotch">
-                <div class="notch-content">🔋 AirPods Pro: 87%</div>
-            </div>
-            
-            <a href="#pricing" class="cta-button">Download NotchPro</a>
+            <a href="#pricing" class="cta-button interactive-element">Experience the Magic</a>
             
             <!-- SEO keyword showcase -->
             <div class="keyword-cloud">
@@ -887,12 +1422,16 @@
 
     <!-- Enhanced Features Section -->
     <section class="features" id="features">
+        <div class="features-intro">
+            <h2>Reimagine Your Workflow</h2>
+            <p>Every feature designed to feel native to macOS, yet powerful enough to transform how you interact with your Mac. This isn't just software — it's a new way of thinking about productivity.</p>
+        </div>
         
         <!-- AirPods Battery & Connectivity -->
         <div class="feature">
             <div class="feature-content">
-                <h2>AirPods Battery Mastery</h2>
-                <p>Never wonder about your AirPods Pro battery again. Real-time battery monitoring for AirPods, AirPods Pro, and AirPods Max directly in your Mac notch. Check connected devices battery levels instantly with our beautiful Mac Bluetooth battery indicator.</p>
+                <h2>Never Miss a Beat</h2>
+                <p>Your AirPods Pro, AirPods Max, and every connected device — their battery levels are now always visible, beautifully integrated into your Mac's natural design language. No more guessing, no more dead batteries during important calls.</p>
                 <div class="feature-keywords">
                     <span class="keyword-tag">AirPods battery on Mac</span>
                     <span class="keyword-tag">AirPods Pro battery status Mac</span>
@@ -903,7 +1442,7 @@
             <div class="feature-visual">
                 <div class="feature-placeholder">
                     <div class="placeholder-icon">🎧</div>
-                    <div class="placeholder-text">Insert AirPods battery feature video or photo here</div>
+                    <div class="placeholder-text">Real-time AirPods battery monitoring with elegant visualizations</div>
                 </div>
             </div>
         </div>
@@ -911,8 +1450,8 @@
         <!-- Calendar & Productivity -->
         <div class="feature">
             <div class="feature-content">
-                <h2>Smart Calendar Integration</h2>
-                <p>Your Mac calendar integration revolutionized. Beautiful reminders in notch Mac style with intelligent notifications that respect your focus. The ultimate alternative to basic macOS calendar notifications with AI-enhanced productivity features.</p>
+                <h2>Time, Perfected</h2>
+                <p>Your calendar becomes an intelligent companion that knows when to whisper and when to speak up. Smart reminders that respect your focus, beautiful notifications that feel like Apple designed them, and AI insights that help you own your day.</p>
                 <div class="feature-keywords">
                     <span class="keyword-tag">Mac calendar integration</span>
                     <span class="keyword-tag">reminders in notch Mac</span>
@@ -923,7 +1462,7 @@
             <div class="feature-visual">
                 <div class="feature-placeholder">
                     <div class="placeholder-icon">📅</div>
-                    <div class="placeholder-text">Insert calendar integration feature video or photo here</div>
+                    <div class="placeholder-text">Intelligent calendar integration with AI-powered insights</div>
                 </div>
             </div>
         </div>
@@ -931,8 +1470,8 @@
         <!-- Spotify & Music Integration -->
         <div class="feature">
             <div class="feature-content">
-                <h2>Spotify Integration Perfected</h2>
-                <p>Control music from Mac notch like never before. Our mini music player for Mac supports Spotify, Apple Music, and any app using macOS media controls. The ultimate Spotify player Mac menu bar alternative with stunning visual design.</p>
+                <h2>Music That Flows</h2>
+                <p>Every song, every playlist, every skip — controlled from the most natural place on your screen. Whether it's Spotify, Apple Music, or any media app, your music lives where it belongs: seamlessly integrated into your workflow without breaking focus.</p>
                 <div class="feature-keywords">
                     <span class="keyword-tag">Spotify integration for Mac</span>
                     <span class="keyword-tag">Apple Music Mac utility</span>
@@ -943,7 +1482,7 @@
             <div class="feature-visual">
                 <div class="feature-placeholder">
                     <div class="placeholder-icon">🎵</div>
-                    <div class="placeholder-text">Insert Spotify integration feature video or photo here</div>
+                    <div class="placeholder-text">Seamless music control with beautiful album artwork</div>
                 </div>
             </div>
         </div>
@@ -951,8 +1490,8 @@
         <!-- AI Assistant Integration -->
         <div class="feature">
             <div class="feature-content">
-                <h2>AI Assistant for Mac</h2>
-                <p>Your personal AI assistant for Mac integrated seamlessly into your workflow. Ask questions, get instant answers, and boost productivity with our smart Mac utility that learns your patterns and preferences.</p>
+                <h2>Intelligence, Naturally</h2>
+                <p>An AI assistant that understands context, respects privacy, and actually helps. Quick calculations, smart suggestions, instant answers — all processed locally when possible, delivered in a way that feels like magic but works like science.</p>
                 <div class="feature-keywords">
                     <span class="keyword-tag">AI assistant for Mac</span>
                     <span class="keyword-tag">smart Mac utility</span>
@@ -963,7 +1502,7 @@
             <div class="feature-visual">
                 <div class="feature-placeholder">
                     <div class="placeholder-icon">🤖</div>
-                    <div class="placeholder-text">Insert AI assistant feature video or photo here</div>
+                    <div class="placeholder-text">Privacy-focused AI assistant with contextual understanding</div>
                 </div>
             </div>
         </div>
@@ -971,8 +1510,8 @@
         <!-- Advanced Customization -->
         <div class="feature">
             <div class="feature-content">
-                <h2>Beautiful Mac Design</h2>
-                <p>Experience the most elegant Mac utilities with our modern macOS apps design philosophy. Beautiful glassmorphism effects, minimalist Mac design, and Apple aesthetic apps that feel native to your system.</p>
+                <h2>Designed to Disappear</h2>
+                <p>The best technology is invisible technology. NotchPro doesn't just look like it belongs on macOS — it feels like Apple built it themselves. Every animation, every transition, every detail crafted to enhance rather than distract.</p>
                 <div class="feature-keywords">
                     <span class="keyword-tag">glassmorphism Mac apps</span>
                     <span class="keyword-tag">elegant Mac utilities</span>
@@ -984,18 +1523,18 @@
             <div class="feature-visual">
                 <div class="feature-placeholder">
                     <div class="placeholder-icon">✨</div>
-                    <div class="placeholder-text">Insert design customization feature video or photo here</div>
+                    <div class="placeholder-text">Native macOS design with subtle glassmorphism effects</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Apple-inspired Stats Section -->
+    <!-- Enhanced Stats Section -->
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
                 <span class="stat-number" data-target="50000">0</span>
-                <div class="stat-label">Active Mac Users</div>
+                <div class="stat-label">Happy Mac Users</div>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="4.9">0</span>
@@ -1003,7 +1542,7 @@
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="99">0</span>
-                <div class="stat-label">Uptime Percentage</div>
+                <div class="stat-label">Uptime Guarantee</div>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="24">0</span>
@@ -1012,111 +1551,111 @@
         </div>
     </section>
 
-    <!-- Apple-inspired UI Gallery -->
+    <!-- Enhanced UI Gallery -->
     <section class="ui-gallery" id="gallery">
-        <h2>Built for Mac</h2>
-        <p class="ui-gallery-subtitle">Discover the most elegant Mac utilities designed with Apple's aesthetic principles and modern glassmorphism effects.</p>
+        <h2>Built for Delight</h2>
+        <p class="ui-gallery-subtitle">Every interaction designed to spark joy. Every animation crafted to feel natural. Every detail considered to make your Mac feel more alive, more responsive, more yours.</p>
         
         <div class="gallery-grid">
             <div class="gallery-item">
                 <div class="gallery-icon">🌙</div>
-                <h3>Dark Mode Native</h3>
-                <p>Seamlessly adapts to your Mac's appearance settings with sophisticated dark mode that's easy on your eyes during long work sessions.</p>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">🎧</div>
-                <h3>Device Hub Central</h3>
-                <p>Monitor all your connected devices from one beautiful interface. AirPods, iPhone, iPad - everything at a glance with real-time battery monitoring.</p>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">🎵</div>
-                <h3>Music Control Master</h3>
-                <p>Never interrupt your workflow again. Control Spotify, Apple Music, and more with elegant mini-player controls right in your notch.</p>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">📅</div>
-                <h3>Smart Calendar Pro</h3>
-                <p>Your schedule beautifully organized with AI-powered insights, smart notifications, and seamless integration with all major calendar apps.</p>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">🤖</div>
-                <h3>AI Assistant Built-in</h3>
-                <p>Get instant answers, quick calculations, and smart suggestions without leaving your current task. Intelligence that feels natural.</p>
+                <h3>Dark Mode Poetry</h3>
+                <p>Beautiful in light, breathtaking in dark. NotchPro adapts to your Mac's appearance with sophisticated color palettes that reduce eye strain and enhance focus during those late-night sessions.</p>
             </div>
             <div class="gallery-item">
                 <div class="gallery-icon">⚡</div>
                 <h3>Lightning Performance</h3>
-                <p>Optimized for speed and efficiency. Uses less than 1% CPU while delivering smooth 60fps animations and instant responsiveness.</p>
+                <p>Less than 1% CPU usage. Butter-smooth 60fps animations. Instant responsiveness. Built with the same performance standards Apple demands from their own software.</p>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🎭</div>
+                <h3>Adaptive Intelligence</h3>
+                <p>Learns your patterns. Predicts your needs. Suggests improvements. NotchPro becomes smarter the more you use it, always respecting your privacy while enhancing your productivity.</p>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🔒</div>
+                <h3>Privacy First</h3>
+                <p>Your data stays on your Mac. Local processing when possible. Transparent about what gets shared. Built with the same privacy principles that make Apple products trustworthy.</p>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🎨</div>
+                <h3>Pixel Perfect</h3>
+                <p>Every icon crafted. Every animation timed. Every color chosen. The obsessive attention to detail that makes the difference between software and art.</p>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🌊</div>
+                <h3>Effortless Flow</h3>
+                <p>No learning curve. No manual. Just install and experience. NotchPro feels so natural, you'll wonder how you ever worked without it.</p>
             </div>
         </div>
     </section>
 
-    <!-- Apple-inspired Pricing -->
+    <!-- Enhanced Pricing -->
     <section class="pricing" id="pricing">
-        <h2>Simple Pricing</h2>
-        <p class="pricing-subtitle">Join thousands of Mac users who've transformed their productivity with the best Dynamic Island app for Mac.</p>
+        <h2>Simple. Powerful. Yours.</h2>
+        <p class="pricing-subtitle">Join thousands of Mac users who've discovered a better way to work. Transform your notch into your productivity superpower.</p>
         
         <div class="pricing-card">
             <div class="price">$2<span class="price-period">/month</span></div>
-            <div class="price-desc">Simple monthly subscription. Cancel anytime. 7-day free trial included.</div>
+            <div class="price-desc">Everything included. 7-day free trial. Cancel anytime.</div>
             
             <div class="pricing-features">
-                <div class="pricing-feature">AirPods battery monitoring</div>
+                <div class="pricing-feature">Real-time AirPods battery monitoring</div>
                 <div class="pricing-feature">Spotify & Apple Music control</div>
                 <div class="pricing-feature">Smart calendar integration</div>
-                <div class="pricing-feature">Built-in AI assistant</div>
-                <div class="pricing-feature">Beautiful native design</div>
+                <div class="pricing-feature">Privacy-focused AI assistant</div>
+                <div class="pricing-feature">Native macOS design</div>
                 <div class="pricing-feature">Regular feature updates</div>
                 <div class="pricing-feature">Premium customer support</div>
                 <div class="pricing-feature">Cancel anytime</div>
             </div>
             
-            <a href="#download" class="cta-button">Start Free Trial</a>
-            <p style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); margin-top: 24px;">No credit card required • 7-day free trial • Cancel anytime</p>
+            <a href="#download" class="cta-button interactive-element">Start Your Free Trial</a>
+            <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); margin-top: 32px; position: relative; z-index: 1;">No credit card required • 7-day free trial • Cancel anytime</p>
         </div>
     </section>
 
-    <!-- Apple-inspired Testimonials -->
+    <!-- Enhanced Testimonials -->
     <section class="testimonials" id="testimonials">
-        <h2>What Mac Users Say</h2>
+        <h2>Stories from Mac Users</h2>
         
         <div class="testimonial-grid">
             <div class="testimonial">
-                <div class="testimonial-text">"NotchPro transformed my MacBook Pro into something magical. The AirPods battery display alone is worth the subscription. This is the Dynamic Island for Mac we've all been waiting for."</div>
+                <div class="testimonial-text">NotchPro transformed my MacBook Pro into something magical. The AirPods battery display alone is worth the subscription. This is the Dynamic Island for Mac we've all been waiting for.</div>
                 <div class="testimonial-author">Sarah M.</div>
                 <div class="testimonial-role">UX Designer, Apple</div>
             </div>
             <div class="testimonial">
-                <div class="testimonial-text">"As a developer, I love how lightweight NotchPro is. The Spotify integration is flawless and the AI assistant helps me stay focused. Best Mac productivity tool I've ever used."</div>
+                <div class="testimonial-text">As a developer, I love how lightweight NotchPro is. The Spotify integration is flawless and the AI assistant helps me stay focused. Best Mac productivity tool I've ever used.</div>
                 <div class="testimonial-author">David K.</div>
                 <div class="testimonial-role">Senior Developer, Stripe</div>
             </div>
             <div class="testimonial">
-                <div class="testimonial-text">"The calendar integration is incredibly sophisticated. It's like having a personal assistant built into my Mac notch. The native design is absolutely stunning."</div>
+                <div class="testimonial-text">The calendar integration is incredibly sophisticated. It's like having a personal assistant built into my Mac notch. The native design is absolutely stunning.</div>
                 <div class="testimonial-author">Lisa R.</div>
                 <div class="testimonial-role">Product Manager, Figma</div>
             </div>
             <div class="testimonial">
-                <div class="testimonial-text">"Finally, a Mac notch app that doesn't feel like a gimmick. NotchPro is genuinely useful and beautiful. The perfect Mac utility for productivity enthusiasts."</div>
+                <div class="testimonial-text">Finally, a Mac notch app that doesn't feel like a gimmick. NotchPro is genuinely useful and beautiful. The perfect Mac utility for productivity enthusiasts.</div>
                 <div class="testimonial-author">Alex T.</div>
                 <div class="testimonial-role">Creative Director, IDEO</div>
             </div>
             <div class="testimonial">
-                <div class="testimonial-text">"The AirPods Max battery display feature is perfect. I can monitor all my Apple devices from one place. This app shows how to customize Mac notch the right way."</div>
+                <div class="testimonial-text">The AirPods Max battery display feature is perfect. I can monitor all my Apple devices from one place. This app shows how to customize Mac notch the right way.</div>
                 <div class="testimonial-author">Marcus L.</div>
                 <div class="testimonial-role">Audio Engineer, Spotify</div>
             </div>
             <div class="testimonial">
-                <div class="testimonial-text">"Best Dynamic Island app for Mac, hands down. The AI integration is subtle but powerful. NotchPro feels like it should have been built by Apple themselves."</div>
+                <div class="testimonial-text">Best Dynamic Island app for Mac, hands down. The AI integration is subtle but powerful. NotchPro feels like it should have been built by Apple themselves.</div>
                 <div class="testimonial-author">Emma W.</div>
                 <div class="testimonial-role">Tech Journalist, The Verge</div>
             </div>
         </div>
     </section>
 
-    <!-- Apple-inspired FAQ -->
+    <!-- Enhanced FAQ -->
     <section class="faq" id="faq">
-        <h2>Frequently Asked Questions</h2>
+        <h2>Everything You Need to Know</h2>
         
         <div class="faq-item">
             <div class="faq-question">
@@ -1154,7 +1693,7 @@
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                Our smart Mac utility includes a privacy-focused AI assistant that processes requests locally when possible. Ask questions, get calendar insights, or request quick calculations - all without compromising your data privacy.
+                Our smart Mac utility includes a privacy-focused AI assistant that processes requests locally when possible. Ask questions, get calendar insights, or request quick calculations — all without compromising your data privacy.
             </div>
         </div>
 
@@ -1169,11 +1708,11 @@
         </div>
     </section>
 
-    <!-- Apple-inspired Footer -->
+    <!-- Enhanced Footer -->
     <footer class="footer">
         <div class="footer-logo">NotchPro</div>
-        <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            The ultimate macOS Dynamic Island alternative for Mac users who demand excellence in design and functionality.
+        <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 40px; max-width: 680px; margin-left: auto; margin-right: auto; position: relative; z-index: 1;">
+            The ultimate macOS productivity experience. Transform your notch into your superpower.
         </p>
         
         <!-- Footer Links -->
@@ -1185,7 +1724,7 @@
         </div>
         
         <!-- SEO Keywords Footer -->
-        <div class="keyword-cloud" style="margin-top: 32px;">
+        <div class="keyword-cloud" style="margin-top: 40px; position: relative; z-index: 1;">
             <span class="keyword-tag">Dynamic Island for Mac</span>
             <span class="keyword-tag">Mac notch customization</span>
             <span class="keyword-tag">AirPods battery Mac</span>
@@ -1194,7 +1733,7 @@
             <span class="keyword-tag">macOS productivity tools</span>
         </div>
         
-        <p style="color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; margin-top: 32px;">
+        <p style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; margin-top: 40px; position: relative; z-index: 1;">
             © 2025 NotchPro. The premier Mac notch app for productivity enthusiasts. All rights reserved.
         </p>
     </footer>
@@ -1203,59 +1742,87 @@
         // Enhanced performance and interactions
         document.addEventListener('DOMContentLoaded', function() {
             initializeScrollAnimations();
-            initializeHeroNotch();
             initializeFAQ();
             startCounterAnimations();
             initializeSEOOptimizations();
+            addMicroInteractions();
+            initializeLoadingStates();
         });
 
-        function initializeHeroNotch() {
-            const heroNotch = document.getElementById('heroNotch');
-            const notchContent = heroNotch.querySelector('.notch-content');
+        function initializeLoadingStates() {
+            // Add loading class to elements initially
+            const elements = document.querySelectorAll('.feature, .gallery-item, .testimonial, .stat-item');
+            elements.forEach(el => el.classList.add('loading'));
             
-            const notchStates = [
-                '🔋 AirPods Pro: 87%',
-                '🎵 Spotify: Midnight City',
-                '📅 Meeting in 15 minutes',
-                '🤖 AI: Ready to assist',
-                '🌐 Wi-Fi: Connected',
-                '📱 iPhone: 67% Charging'
-            ];
-            
-            let currentState = 0;
-            
-            heroNotch.addEventListener('click', () => {
-                currentState = (currentState + 1) % notchStates.length;
-                notchContent.textContent = notchStates[currentState];
-                
-                // Enhanced click feedback
-                heroNotch.style.transform = 'translateY(-2px) scale(0.98)';
-                setTimeout(() => {
-                    heroNotch.style.transform = 'translateY(-2px) scale(1.02)';
-                }, 100);
+            // Remove loading states with staggered timing
+            setTimeout(() => {
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.remove('loading');
+                        el.classList.add('loaded');
+                    }, index * 100);
+                });
+            }, 500);
+        }
 
-                // Track user interaction for SEO
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'notch_interaction', {
-                        'event_category': 'engagement',
-                        'event_label': 'hero_notch_click'
-                    });
-                }
+        function addMicroInteractions() {
+            // Enhanced button hover effects
+            document.querySelectorAll('.interactive-element').forEach(element => {
+                element.addEventListener('mouseenter', (e) => {
+                    const ripple = e.target.querySelector('::after');
+                    e.target.style.transform = 'translateY(-2px) scale(1.02)';
+                });
+
+                element.addEventListener('mouseleave', (e) => {
+                    e.target.style.transform = 'translateY(0) scale(1)';
+                });
             });
 
-            // Auto-cycle through states for demo
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    currentState = (currentState + 1) % notchStates.length;
-                    notchContent.textContent = notchStates[currentState];
-                }
-            }, 4000);
+            // Gallery item tilt effect
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    item.style.transform = `translateY(-12px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+                });
+            });
+
+            // Feature placeholder breathing animation
+            document.querySelectorAll('.feature-placeholder').forEach(placeholder => {
+                let breatheAnimation;
+                
+                placeholder.addEventListener('mouseenter', () => {
+                    breatheAnimation = setInterval(() => {
+                        placeholder.style.transform = 'translateY(-8px) scale(1.02)';
+                        setTimeout(() => {
+                            placeholder.style.transform = 'translateY(-6px) scale(1.01)';
+                        }, 1000);
+                    }, 2000);
+                });
+
+                placeholder.addEventListener('mouseleave', () => {
+                    clearInterval(breatheAnimation);
+                    placeholder.style.transform = 'translateY(0) scale(1)';
+                });
+            });
         }
 
         function initializeScrollAnimations() {
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '0px 0px -100px 0px'
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -1265,7 +1832,7 @@
                         
                         // SEO tracking for section views
                         if (typeof gtag !== 'undefined') {
-                            const sectionName = entry.target.id || 'unknown_section';
+                            const sectionName = entry.target.id || entry.target.classList[0] || 'unknown_section';
                             gtag('event', 'section_view', {
                                 'event_category': 'engagement',
                                 'event_label': sectionName
@@ -1275,11 +1842,12 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.feature, .gallery-item, .testimonial').forEach(element => {
+            // Observe elements with staggered animations
+            document.querySelectorAll('.feature, .gallery-item, .testimonial, .features-intro').forEach(element => {
                 observer.observe(element);
             });
 
-            // Enhanced scroll indicator
+            // Enhanced scroll indicator with smooth transitions
             const scrollDots = document.querySelectorAll('.scroll-dot');
             const sections = ['hero', 'features', 'gallery', 'pricing', 'testimonials'];
             
@@ -1287,7 +1855,16 @@
                 dot.addEventListener('click', () => {
                     const section = document.getElementById(sections[index]);
                     if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
+                        section.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Enhanced visual feedback
+                        dot.style.transform = 'scale(2)';
+                        setTimeout(() => {
+                            dot.style.transform = dot.classList.contains('active') ? 'scale(1.6)' : 'scale(1)';
+                        }, 200);
                         
                         // SEO tracking
                         if (typeof gtag !== 'undefined') {
@@ -1300,13 +1877,18 @@
                 });
             });
 
-            // Enhanced scroll tracking
+            // Enhanced scroll position tracking with parallax-like effects
             let ticking = false;
             function updateScrollPosition() {
                 const scrollPos = window.scrollY;
                 const windowHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
                 
-                // Update active scroll indicator
+                // Update atmospheric background
+                const atmosphericBg = document.querySelector('.atmospheric-bg::before');
+                const scrollProgress = scrollPos / (docHeight - windowHeight);
+                
+                // Update active scroll indicator with smooth transitions
                 sections.forEach((sectionId, index) => {
                     const section = document.getElementById(sectionId);
                     if (section) {
@@ -1314,10 +1896,13 @@
                         const sectionBottom = sectionTop + section.offsetHeight;
                         
                         if (scrollPos >= sectionTop - windowHeight/2 && scrollPos < sectionBottom - windowHeight/2) {
-                            scrollDots.forEach(dot => dot.classList.remove('active'));
-                            if (scrollDots[index]) {
-                                scrollDots[index].classList.add('active');
-                            }
+                            scrollDots.forEach((dot, dotIndex) => {
+                                if (dotIndex === index) {
+                                    dot.classList.add('active');
+                                } else {
+                                    dot.classList.remove('active');
+                                }
+                            });
                         }
                     }
                 });
@@ -1339,14 +1924,24 @@
                     const faqItem = question.parentElement;
                     const isActive = faqItem.classList.contains('active');
                     
-                    // Close all FAQ items
+                    // Close all FAQ items with smooth animation
                     document.querySelectorAll('.faq-item').forEach(item => {
                         item.classList.remove('active');
+                        const icon = item.querySelector('.faq-icon');
+                        icon.style.transform = 'rotate(0deg) scale(1)';
                     });
                     
                     // Open clicked item if it wasn't active
                     if (!isActive) {
                         faqItem.classList.add('active');
+                        const icon = question.querySelector('.faq-icon');
+                        icon.style.transform = 'rotate(45deg) scale(1.1)';
+                        
+                        // Enhanced visual feedback
+                        faqItem.style.transform = 'translateY(-2px)';
+                        setTimeout(() => {
+                            faqItem.style.transform = 'translateY(0)';
+                        }, 300);
                         
                         // SEO tracking for FAQ interactions
                         if (typeof gtag !== 'undefined') {
@@ -1363,7 +1958,7 @@
 
         function startCounterAnimations() {
             const observerOptions = {
-                threshold: 0.5,
+                threshold: 0.7,
                 rootMargin: '0px'
             };
 
@@ -1385,9 +1980,9 @@
 
         function animateCounter(element, target) {
             let current = 0;
-            const increment = target / 60;
-            const duration = 1500;
-            const stepTime = duration / 60;
+            const increment = target / 80;
+            const duration = 2000;
+            const stepTime = duration / 80;
 
             const timer = setInterval(() => {
                 current += increment;
@@ -1413,7 +2008,7 @@
                     const timeSpent = Date.now() - startTime;
                     
                     // Track engagement time for SEO
-                    if (typeof gtag !== 'undefined' && timeSpent > 5000) {
+                    if (typeof gtag !== 'undefined' && timeSpent > 10000) {
                         gtag('event', 'page_engagement', {
                             'event_category': 'seo',
                             'event_label': 'time_spent',
@@ -1425,9 +2020,15 @@
                 }
             });
 
-            // Track CTA button clicks
+            // Track CTA button clicks with enhanced feedback
             document.querySelectorAll('.cta-button').forEach(button => {
                 button.addEventListener('click', (e) => {
+                    // Visual feedback
+                    button.style.transform = 'translateY(-1px) scale(0.98)';
+                    setTimeout(() => {
+                        button.style.transform = 'translateY(-3px) scale(1.05)';
+                    }, 100);
+
                     if (typeof gtag !== 'undefined') {
                         gtag('event', 'cta_click', {
                             'event_category': 'conversion',
@@ -1438,14 +2039,26 @@
                 });
             });
 
-            // Enhanced keyword tag interactions
+            // Enhanced keyword tag interactions with ripple effect
             document.querySelectorAll('.keyword-tag').forEach(tag => {
-                tag.addEventListener('click', () => {
-                    tag.style.transform = 'translateY(-2px) scale(1.05)';
+                tag.addEventListener('click', (e) => {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = tag.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    tag.appendChild(ripple);
                     
                     setTimeout(() => {
-                        tag.style.transform = 'translateY(-1px) scale(1.02)';
-                    }, 150);
+                        ripple.remove();
+                    }, 600);
                     
                     // SEO tracking for keyword engagement
                     if (typeof gtag !== 'undefined') {
@@ -1458,7 +2071,7 @@
             });
         }
 
-        // Enhanced smooth scrolling with tracking
+        // Enhanced smooth scrolling with easing
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1468,6 +2081,12 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+
+                    // Enhanced visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
 
                     // SEO tracking for internal navigation
                     if (typeof gtag !== 'undefined') {
@@ -1510,6 +2129,27 @@
                 }, 0);
             });
         }
+
+        // Add ripple effect styles dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: rippleEffect 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes rippleEffect {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 
     <!-- Enhanced SEO and Analytics Script Placeholders -->
