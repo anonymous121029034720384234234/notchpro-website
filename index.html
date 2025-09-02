@@ -354,7 +354,7 @@
             line-height: 1.6;
         }
 
-        /* Enhanced Features Section with asymmetrical layout */
+        /* Redesigned Features Section as a Narrative Story Flow */
         .features {
             padding: 160px 24px;
             max-width: 1400px;
@@ -388,66 +388,37 @@
             background-clip: text;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 32px;
-            margin-bottom: 80px;
+        .feature-story {
+            display: flex;
+            flex-direction: column;
+            gap: 160px;
         }
 
-        /* Asymmetrical feature layouts */
-        .feature-large {
-            grid-column: span 8;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+        .feature-chapter {
+            display: flex;
             align-items: center;
-            opacity: 0;
-            transform: translateY(60px) scale(0.95);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .feature-small {
-            grid-column: span 4;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(60px) scale(0.95);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .feature-full {
-            grid-column: span 12;
-            display: grid;
-            grid-template-columns: 5fr 7fr;
             gap: 80px;
-            align-items: center;
-            margin: 80px 0;
             opacity: 0;
-            transform: translateY(60px) scale(0.95);
+            transform: translateY(60px) scale(0.98);
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 500px;
         }
 
-        .feature.visible {
+        .feature-chapter.visible {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
 
-        /* Enhanced icons with more detail */
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 32px;
-            display: block;
-            opacity: 0.9;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+        .feature-chapter:nth-child(even) {
+            flex-direction: row-reverse;
         }
 
-        .feature:hover .feature-icon {
-            opacity: 1;
-            transform: scale(1.1) translateY(-4px);
+        .feature-content {
+            flex: 1;
+            max-width: 50%;
         }
 
-        .feature-content h2 {
+        .feature-content h3 {
             font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 32px;
@@ -455,14 +426,6 @@
             letter-spacing: -0.03em;
             line-height: 1.15;
             text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-content h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
         }
 
         .feature-content p {
@@ -473,12 +436,28 @@
             margin-bottom: 32px;
         }
 
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 32px;
+            display: block;
+            opacity: 0.9;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+        }
+
+        .feature-chapter:hover .feature-icon {
+            opacity: 1;
+            transform: scale(1.1) translateY(-4px);
+        }
+
         .feature-visual {
+            flex: 1;
             position: relative;
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
+            max-width: 50%;
         }
 
         .feature-placeholder {
@@ -506,7 +485,20 @@
             box-shadow: 0 20px 60px rgba(0, 122, 255, 0.2);
         }
 
-        /* Asymmetrical stats with varied sizes */
+        .feature-transition {
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: -80px 0;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-chapter:hover + .feature-transition {
+            opacity: 1;
+        }
+
+        /* Enhanced stats with glassmorphism to match hero/journey/footer */
         .stats-section {
             padding: 120px 24px;
             background: rgba(255, 255, 255, 0.03);
@@ -518,31 +510,12 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 32px;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
-        }
-
-        .stat-large {
-            grid-column: span 4;
-            grid-row: span 2;
-            padding: 48px 32px;
-            text-align: center;
-        }
-
-        .stat-medium {
-            grid-column: span 4;
-            padding: 32px 24px;
-            text-align: center;
-        }
-
-        .stat-small {
-            grid-column: span 4;
-            padding: 24px 20px;
-            text-align: center;
         }
 
         .stat-item {
@@ -551,6 +524,8 @@
             -webkit-backdrop-filter: blur(16px);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            text-align: center;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
@@ -573,10 +548,6 @@
             transition: all 0.4s ease;
         }
 
-        .stat-large .stat-number {
-            font-size: 4.5rem;
-        }
-
         .stat-label {
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.7);
@@ -585,7 +556,7 @@
             text-transform: uppercase;
         }
 
-        /* Enhanced testimonials with varied layouts */
+        /* Enhanced testimonials with glassmorphism and smooth animations */
         .testimonials {
             padding: 160px 24px;
             background: rgba(255, 255, 255, 0.02);
@@ -610,7 +581,7 @@
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 32px;
             max-width: 1400px;
             margin: 0 auto;
@@ -618,30 +589,22 @@
             z-index: 1;
         }
 
-        .testimonial-featured {
-            grid-column: span 8;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(24px);
-            border-radius: 24px;
-            padding: 48px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transform: scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.15);
-        }
-
-        .testimonial-standard {
-            grid-column: span 4;
+        .testimonial {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(24px);
             border-radius: 20px;
             padding: 32px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .testimonial {
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .testimonial.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .testimonial:hover {
@@ -658,10 +621,6 @@
             font-style: italic;
             position: relative;
             z-index: 1;
-        }
-
-        .testimonial-featured .testimonial-text {
-            font-size: 1.3rem;
         }
 
         .testimonial-author {
@@ -682,7 +641,7 @@
             z-index: 1;
         }
 
-        /* Integrated pricing section */
+        /* Integrated pricing section with enhanced glassmorphism */
         .pricing-integrated {
             padding: 160px 24px;
             text-align: center;
@@ -721,6 +680,14 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .value-prop.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .value-prop:hover {
@@ -780,7 +747,7 @@
             font-size: 0.95rem;
         }
 
-        /* Critical FAQ section with some expanded */
+        /* Critical FAQ section with enhanced UI */
         .faq {
             padding: 160px 24px;
             max-width: 900px;
@@ -810,6 +777,13 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .faq-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .faq-item::before {
@@ -1004,31 +978,21 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
+            .feature-chapter {
+                flex-direction: column !important;
+                gap: 40px;
             }
 
-            .feature-large, .feature-small, .feature-full {
-                grid-column: span 1;
-                grid-template-columns: 1fr;
-                text-align: center;
+            .feature-content, .feature-visual {
+                max-width: 100%;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .stat-large, .stat-medium, .stat-small {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-
             .testimonial-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .testimonial-featured, .testimonial-standard {
-                grid-column: span 1;
             }
 
             .journey-steps {
@@ -1165,20 +1129,41 @@
         </div>
     </section>
 
-    <!-- Enhanced Features Section with Asymmetrical Layout -->
+    <!-- Redesigned Features Section as a Narrative Story -->
     <section class="features" id="features">
         <div class="features-intro">
             <h2>Every Detail Perfected</h2>
-            <p style="font-size: 1.25rem; color: rgba(255, 255, 255, 0.7); max-width: 720px; margin: 0 auto; line-height: 1.6;">These aren't just features — they're superpowers. Each one designed to feel natural, work flawlessly, and integrate seamlessly into your daily workflow.</p>
+            <p style="font-size: 1.25rem; color: rgba(255, 255, 255, 0.7); max-width: 720px; margin: 0 auto; line-height: 1.6;">Imagine a day where your Mac notch anticipates every need, flowing seamlessly from one moment to the next. This is the story of how NotchPro turns ordinary workflows into extraordinary experiences.</p>
         </div>
         
-        <div class="features-grid">
-            <!-- Large Feature: AirPods Integration -->
-            <div class="feature feature-large">
+        <div class="feature-story">
+            <!-- Chapter 1: Calendar Reminders -->
+            <div class="feature-chapter">
+                <div class="feature-content">
+                    <span class="feature-icon">📅</span>
+                    <h3>Your Day Begins with Clarity</h3>
+                    <p>As you open your Mac in the morning, NotchPro gently surfaces your calendar reminders right in the notch. No more digging through apps—see upcoming meetings, deadlines, and personal notes at a glance, setting a smooth tone for the day ahead. It's like having a personal planner that's always one step ahead, integrated naturally into your screen.</p>
+                    <div class="keyword-cloud">
+                        <span class="keyword-tag">Mac calendar reminders</span>
+                        <span class="keyword-tag">Smart notifications Mac</span>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <div class="feature-placeholder">
+                        <div style="font-size: 2rem; margin-bottom: 16px; opacity: 0.8;">📅 9:00 AM Meeting</div>
+                        <div style="color: rgba(255, 255, 255, 0.7); text-align: center;">Intelligent calendar insights with subtle animations</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="feature-transition">...and as you grab your AirPods to start your commute...</p>
+
+            <!-- Chapter 2: AirPods Battery -->
+            <div class="feature-chapter">
                 <div class="feature-content">
                     <span class="feature-icon">🎧</span>
-                    <h2>Never Miss a Beat</h2>
-                    <p>Real-time battery monitoring for AirPods Pro, AirPods Max, and every connected device. Beautiful visualizations that warn you before batteries die, so you're never caught off guard during important calls or focus sessions.</p>
+                    <h3>Seamless Connection, Total Awareness</h3>
+                    <p>NotchPro instantly detects your AirPods, displaying real-time battery levels with elegant visualizations. Get proactive alerts before they run low, ensuring uninterrupted calls or music sessions. This natural integration means you're always connected, without ever breaking your flow—privacy-first, with all data processed locally.</p>
                     <div class="keyword-cloud">
                         <span class="keyword-tag">AirPods battery on Mac</span>
                         <span class="keyword-tag">Mac device monitoring</span>
@@ -1192,19 +1177,14 @@
                 </div>
             </div>
 
-            <!-- Small Feature: Quick Access -->
-            <div class="feature feature-small">
-                <span class="feature-icon">⚡</span>
-                <h3>Lightning Fast</h3>
-                <p>Instant access to everything. One click to control music, check calendar, or ask AI questions. Designed for speed, optimized for flow.</p>
-            </div>
+            <p class="feature-transition">...queuing up your favorite playlist as focus mode engages...</p>
 
-            <!-- Full Width Feature: Music Integration -->
-            <div class="feature feature-full">
+            <!-- Chapter 3: Music Integration -->
+            <div class="feature-chapter">
                 <div class="feature-content">
                     <span class="feature-icon">🎵</span>
-                    <h2>Music That Flows With You</h2>
-                    <p>Universal music control that works with Spotify, Apple Music, and any media app. Album artwork, track info, and seamless playback control — all without breaking your focus or switching apps.</p>
+                    <h3>Music That Moves With You</h3>
+                    <p>As your day ramps up, Spotify controls appear effortlessly in the notch. Skip tracks, adjust volume, or view album artwork without switching apps. Whether it's Spotify, Apple Music, or any media player, NotchPro creates a mini command center that's quick to access and disappears when not needed—keeping your workflow uninterrupted and immersive.</p>
                     <div class="keyword-cloud">
                         <span class="keyword-tag">Spotify integration Mac</span>
                         <span class="keyword-tag">Apple Music Mac utility</span>
@@ -1219,58 +1199,53 @@
                 </div>
             </div>
 
-            <!-- Large Feature: AI Assistant -->
-            <div class="feature feature-large">
+            <p class="feature-transition">...while your AI companion stands ready to assist...</p>
+
+            <!-- Chapter 4: AI Assistant -->
+            <div class="feature-chapter">
+                <div class="feature-content">
+                    <span class="feature-icon">🧠</span>
+                    <h3>Intelligence That Anticipates</h3>
+                    <p>Throughout your day, the built-in AI assistant provides context-aware help—quick calculations, smart suggestions, or workflow optimizations—all from the notch. With lightning-fast responses and a privacy-first design that processes locally, it feels like a natural extension of your thoughts, enhancing productivity without ever feeling intrusive.</p>
+                    <div class="keyword-cloud">
+                        <span class="keyword-tag">AI assistant for Mac</span>
+                        <span class="keyword-tag">Mac AI productivity</span>
+                    </div>
+                </div>
                 <div class="feature-visual">
                     <div class="feature-placeholder">
                         <div style="font-size: 2rem; margin-bottom: 16px; opacity: 0.8;">🤖 AI</div>
                         <div style="color: rgba(255, 255, 255, 0.7); text-align: center;">Privacy-first AI that understands context</div>
                     </div>
                 </div>
-                <div class="feature-content">
-                    <span class="feature-icon">🧠</span>
-                    <h2>Intelligence, Naturally</h2>
-                    <p>A privacy-focused AI assistant that processes locally when possible. Quick calculations, smart suggestions, calendar insights — delivered with context and respect for your data.</p>
-                    <div class="keyword-cloud">
-                        <span class="keyword-tag">AI assistant for Mac</span>
-                        <span class="keyword-tag">Mac AI productivity</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Small Feature: Privacy -->
-            <div class="feature feature-small">
-                <span class="feature-icon">🔒</span>
-                <h3>Privacy First</h3>
-                <p>Your data stays on your Mac. Local processing when possible. Transparent about what gets shared. Built with Apple-level privacy standards.</p>
             </div>
         </div>
     </section>
 
-    <!-- Enhanced Stats Section with Asymmetrical Layout -->
+    <!-- Enhanced Stats Section -->
     <section class="stats-section">
         <div class="stats-grid">
-            <div class="stat-item stat-large">
+            <div class="stat-item">
                 <span class="stat-number" data-target="50000">0</span>
                 <div class="stat-label">Happy Mac Users</div>
             </div>
-            <div class="stat-item stat-medium">
+            <div class="stat-item">
                 <span class="stat-number" data-target="4.9">0</span>
                 <div class="stat-label">App Store Rating</div>
             </div>
-            <div class="stat-item stat-medium">
+            <div class="stat-item">
                 <span class="stat-number" data-target="99">0</span>
                 <div class="stat-label">Uptime Guarantee</div>
             </div>
-            <div class="stat-item stat-small">
+            <div class="stat-item">
                 <span class="stat-number" data-target="24">0</span>
                 <div class="stat-label">Hours Saved</div>
             </div>
-            <div class="stat-item stat-small">
+            <div class="stat-item">
                 <span class="stat-number" data-target="2847">0</span>
                 <div class="stat-label">Reviews</div>
             </div>
-            <div class="stat-item stat-small">
+            <div class="stat-item">
                 <span class="stat-number" data-target="1">0</span>
                 <div class="stat-label">CPU Usage</div>
             </div>
@@ -1340,38 +1315,36 @@
         </div>
     </section>
 
-    <!-- Enhanced Testimonials with Varied Layout -->
+    <!-- Enhanced Testimonials -->
     <section class="testimonials" id="testimonials">
         <h2>What Mac Users Are Saying</h2>
         
         <div class="testimonial-grid">
-            <!-- Featured testimonial -->
-            <div class="testimonial testimonial-featured">
+            <div class="testimonial">
                 <div class="testimonial-text">"NotchPro transformed my MacBook Pro into something truly magical. The AirPods battery display alone is worth the subscription — I never run out of juice during important calls anymore. This is the Dynamic Island for Mac we've all been waiting for. The attention to detail is incredible."</div>
                 <div class="testimonial-author">Sarah Mitchell</div>
                 <div class="testimonial-role">UX Designer, Apple</div>
             </div>
             
-            <!-- Standard testimonials -->
-            <div class="testimonial testimonial-standard">
+            <div class="testimonial">
                 <div class="testimonial-text">"As a developer, I love how lightweight NotchPro is. The Spotify integration is flawless and the AI assistant helps me stay focused. Best Mac productivity tool I've used."</div>
                 <div class="testimonial-author">David Kumar</div>
                 <div class="testimonial-role">Senior Developer, Stripe</div>
             </div>
             
-            <div class="testimonial testimonial-standard">
+            <div class="testimonial">
                 <div class="testimonial-text">"The calendar integration is sophisticated and the design is absolutely stunning. It feels like Apple built this themselves."</div>
                 <div class="testimonial-author">Lisa Rodriguez</div>
                 <div class="testimonial-role">Product Manager, Figma</div>
             </div>
             
-            <div class="testimonial testimonial-standard">
+            <div class="testimonial">
                 <div class="testimonial-text">"Finally, a Mac notch app that's genuinely useful and beautiful. The perfect productivity tool for Mac enthusiasts."</div>
                 <div class="testimonial-author">Alex Thompson</div>
                 <div class="testimonial-role">Creative Director, IDEO</div>
             </div>
             
-            <div class="testimonial testimonial-standard">
+            <div class="testimonial">
                 <div class="testimonial-text">"The AirPods Max battery display feature is perfect. I can monitor all my devices from one place. This is how you customize Mac notch properly."</div>
                 <div class="testimonial-author">Marcus Lee</div>
                 <div class="testimonial-role">Audio Engineer, Spotify</div>
@@ -1489,7 +1462,7 @@
 
         function initializeLoadingStates() {
             // Add loading class to elements initially
-            const elements = document.querySelectorAll('.journey-step, .feature, .testimonial, .stat-item');
+            const elements = document.querySelectorAll('.journey-step, .feature-chapter, .testimonial, .stat-item, .value-prop, .faq-item');
             elements.forEach(el => el.classList.add('loading'));
             
             // Remove loading states with staggered timing
@@ -1559,12 +1532,12 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Stagger animation for journey steps
-                        if (entry.target.classList.contains('journey-step')) {
-                            const steps = document.querySelectorAll('.journey-step');
-                            steps.forEach((step, index) => {
+                        // Stagger animation for journey steps and feature chapters
+                        if (entry.target.classList.contains('journey-step') || entry.target.classList.contains('feature-chapter')) {
+                            const items = document.querySelectorAll('.journey-step, .feature-chapter');
+                            items.forEach((item, index) => {
                                 setTimeout(() => {
-                                    step.classList.add('visible');
+                                    item.classList.add('visible');
                                 }, index * 200);
                             });
                         }
@@ -1582,7 +1555,7 @@
             }, observerOptions);
 
             // Observe elements with staggered animations
-            document.querySelectorAll('.journey-step, .feature, .testimonial, .features-intro').forEach(element => {
+            document.querySelectorAll('.journey-step, .feature-chapter, .features-intro, .testimonial, .value-prop, .faq-item').forEach(element => {
                 observer.observe(element);
             });
 
@@ -1706,7 +1679,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const counter = entry.target;
-                        const target = parseInt(counter.dataset.target);
+                        const target = parseFloat(counter.dataset.target);
                         animateCounter(counter, target);
                         counterObserver.unobserve(counter);
                     }
