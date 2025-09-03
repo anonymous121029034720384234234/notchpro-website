@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotchPro - Best Dynamic Island App for Mac | Mac Notch Customization Tool</title>
-    <meta name="description" content="Transform your Mac notch with NotchPro - the ultimate Dynamic Island alternative for macOS. Control AirPods battery, Spotify music, calendar reminders & AI assistant. $2/month.">
-    <meta name="keywords" content="NotchPro app, Dynamic Island for Mac, Mac notch customization, AirPods battery on Mac, Spotify integration Mac, Mac calendar app, AI assistant for Mac, macOS productivity tools">
-    <link rel="canonical" href="https://notchpro.app">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://notchpro.app">
-    <meta property="og:title" content="NotchPro - Best Dynamic Island App for Mac">
-    <meta property="og:description" content="Transform your Mac notch with intelligent controls for AirPods, music, calendar and AI. The most elegant Mac productivity tool.">
-    <meta property="og:image" content="https://notchpro.app/og-image.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://notchpro.app">
-    <meta property="twitter:title" content="NotchPro - Dynamic Island for Mac">
-    <meta property="twitter:description" content="The most beautiful way to use your Mac notch. AirPods battery, Spotify controls, calendar reminders & AI assistant.">
+  <title>NotchPro – Best Dynamic Island for Mac | Mac Notch Customization</title>
+  <meta name="description" content="Transform your Mac's notch with NotchPro — the best Dynamic Island alternative for macOS. AirPods battery, Spotify, calendar reminders & AI assistant. $2/month.">
 
-    <!-- Schema.org markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+  <link rel="canonical" href="https://notchpro.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notchpro.app/">
+  <meta property="og:title" content="NotchPro – Dynamic Island for Mac">
+  <meta property="og:description" content="Transform your Mac notch with intelligent controls for AirPods, Spotify, calendar and AI. The most elegant Mac productivity tool.">
+  <meta property="og:image" content="https://notchpro.app/og-image.jpg">
+  <meta property="og:site_name" content="NotchPro">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://notchpro.app/">
+  <meta name="twitter:title" content="NotchPro – Dynamic Island for Mac">
+  <meta name="twitter:description" content="Beautiful Mac notch customization. AirPods battery, Spotify controls, calendar reminders & AI assistant.">
+  <meta name="twitter:image" content="https://notchpro.app/og-image.jpg">
+  <meta name="twitter:creator" content="@yourhandle">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NotchPro",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "macOS",
+    "description": "Dynamic Island alternative for Mac with AirPods battery monitoring, Spotify integration, calendar reminders and AI assistant.",
+    "downloadUrl": "https://notchpro.app/download",
+    "offers": {
+      "@type": "Offer",
+      "price": "2.00",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "2847"
+    },
+    "publisher": {
+      "@type": "Organization",
       "name": "NotchPro",
-      "applicationCategory": "ProductivityApplication",
-      "operatingSystem": "macOS",
-      "description": "Dynamic Island alternative for Mac with AirPods battery monitoring, Spotify integration, calendar reminders and AI assistant",
-      "offers": {
-        "@type": "Offer",
-        "price": "2.00",
-        "priceCurrency": "USD",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "2.00",
-          "priceCurrency": "USD",
-          "billingIncrement": "1",
-          "unitCode": "MON"
-        }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "2847"
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://notchpro.app/logo.png"
       }
     }
-    </script>
+  }
+  </script>
+</head>
 
     <style>
         * {
@@ -441,13 +448,7 @@
             margin-bottom: 32px;
             display: block;
             opacity: 0.9;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
-        }
-
-        .feature-chapter:hover .feature-icon {
-            opacity: 1;
-            transform: scale(1.1) translateY(-4px);
         }
 
         .feature-visual {
@@ -472,17 +473,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-        }
-
-        .feature-placeholder:hover {
-            border-color: rgba(0, 122, 255, 0.4);
-            background: rgba(0, 122, 255, 0.08);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 122, 255, 0.2);
         }
 
         .feature-transition {
@@ -494,66 +486,71 @@
             transition: opacity 0.5s ease;
         }
 
-        .feature-chapter:hover + .feature-transition {
-            opacity: 1;
+        /* Redesigned Stats Section with Elegant Minimal Design */
+        .stats-section {
+            padding: 100px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        /* Enhanced stats with glassmorphism to match hero/journey/footer */
-        .stats-section {
-            padding: 120px 24px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        .stats-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .stats-intro h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .stats-intro p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 32px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
         }
 
-        .stat-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(0, 122, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.2);
+        .stat-item {
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: #007AFF;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: block;
-            text-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
-            transition: all 0.4s ease;
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            line-height: 1.3;
         }
 
         /* Enhanced testimonials with glassmorphism and smooth animations */
@@ -641,23 +638,23 @@
             z-index: 1;
         }
 
-        /* Integrated pricing section with enhanced glassmorphism */
+        /* Clean & Conversion-Focused Pricing Section */
         .pricing-integrated {
-            padding: 160px 24px;
-            text-align: center;
-            max-width: 1200px;
+            padding: 120px 24px;
+            max-width: 800px;
             margin: 0 auto;
             position: relative;
         }
 
         .pricing-hero {
-            margin-bottom: 60px;
+            text-align: center;
+            margin-bottom: 48px;
         }
 
         .pricing-hero h2 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
             color: #ffffff;
             letter-spacing: -0.03em;
             background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
@@ -666,99 +663,109 @@
             background-clip: text;
         }
 
-        .value-props {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin: 60px 0;
-        }
-
-        .value-prop {
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(24px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .value-prop.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .value-prop:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-4px);
+        .pricing-hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .pricing-card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
-            border-radius: 28px;
-            padding: 60px 48px;
+            border-radius: 32px;
+            padding: 48px 40px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            margin: 40px 0;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .trial-badge {
+            background: linear-gradient(135deg, #34C759 0%, #28A745 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 16px rgba(52, 199, 89, 0.3);
+        }
+
+        .price-container {
+            margin-bottom: 32px;
         }
 
         .price {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             color: #007AFF;
-            margin-bottom: 16px;
+            line-height: 1;
+            margin-bottom: 4px;
             text-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
-            position: relative;
-            z-index: 1;
         }
 
         .price-period {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.7);
             font-weight: 600;
         }
 
-        .trial-highlight {
-            background: linear-gradient(135deg, rgba(52, 199, 89, 0.2) 0%, rgba(52, 199, 89, 0.1) 100%);
-            border: 1px solid rgba(52, 199, 89, 0.3);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 32px 0;
-            position: relative;
-            z-index: 1;
+        .pricing-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 32px;
+            margin: 40px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .trial-highlight h3 {
-            font-size: 1.2rem;
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .pricing-feature-icon {
             color: #34C759;
-            margin-bottom: 8px;
             font-weight: 700;
+            font-size: 1rem;
         }
 
-        .trial-highlight p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
+        .pricing-cta-container {
+            margin-top: 40px;
         }
 
-        /* Critical FAQ section with enhanced UI */
+        .pricing-guarantee {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        /* Clean & Functional FAQ Section */
         .faq {
-            padding: 160px 24px;
-            max-width: 900px;
+            padding: 120px 24px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .faq h2 {
             text-align: center;
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             color: #ffffff;
             letter-spacing: -0.03em;
             background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
@@ -768,17 +775,16 @@
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 16px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(20px);
         }
 
         .faq-item.visible {
@@ -786,38 +792,16 @@
             transform: translateY(0);
         }
 
-        .faq-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #007AFF, #34C759);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
         .faq-item:hover {
-            border-color: rgba(0, 122, 255, 0.25);
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-        }
-
-        .faq-item.active::before {
-            opacity: 1;
-        }
-
-        .faq-item.critical {
-            border-color: rgba(0, 122, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         .faq-question {
-            padding: 32px;
+            padding: 24px 32px;
             cursor: pointer;
-            font-weight: 700;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -827,28 +811,23 @@
         }
 
         .faq-question:hover {
-            color: #4DA6FF;
+            color: #007AFF;
         }
 
         .faq-answer {
             padding: 0 32px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
             line-height: 1.7;
             font-weight: 400;
         }
 
         .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding-bottom: 32px;
-        }
-
-        .faq-item.critical .faq-answer {
-            max-height: 300px;
-            padding-bottom: 32px;
+            max-height: 200px;
+            padding-bottom: 24px;
         }
 
         .faq-icon {
@@ -1222,96 +1201,79 @@
         </div>
     </section>
 
-    <!-- Enhanced Stats Section -->
+    <!-- Redesigned Stats Section -->
     <section class="stats-section">
+        <div class="stats-intro">
+            <h2>Trusted by Mac Users Everywhere</h2>
+            <p>Join thousands who've transformed their workflow with NotchPro</p>
+        </div>
         <div class="stats-grid">
             <div class="stat-item">
-                <span class="stat-number" data-target="50000">0</span>
-                <div class="stat-label">Happy Mac Users</div>
+                <span class="stat-number" data-target="50">0</span>
+                <div class="stat-label">Thousand<br>Active Users</div>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="4.9">0</span>
-                <div class="stat-label">App Store Rating</div>
+                <div class="stat-label">App Store<br>Rating</div>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="99">0</span>
-                <div class="stat-label">Uptime Guarantee</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="24">0</span>
-                <div class="stat-label">Hours Saved</div>
+                <div class="stat-label">Uptime<br>Guarantee</div>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-target="2847">0</span>
-                <div class="stat-label">Reviews</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="1">0</span>
-                <div class="stat-label">CPU Usage</div>
+                <div class="stat-label">Happy<br>Reviews</div>
             </div>
         </div>
     </section>
 
-    <!-- Integrated Pricing Section -->
+    <!-- Clean Conversion-Focused Pricing Section -->
     <section class="pricing-integrated" id="pricing">
         <div class="pricing-hero">
-            <h2>Transform Your Mac Today</h2>
-            <p style="font-size: 1.25rem; color: rgba(255, 255, 255, 0.7); max-width: 680px; margin: 0 auto; line-height: 1.6;">Join thousands of Mac users who've discovered the power of an intelligent notch. Full access, no commitments, cancel anytime.</p>
-        </div>
-        
-        <div class="value-props">
-            <div class="value-prop">
-                <h3 style="color: #007AFF; margin-bottom: 16px; font-weight: 700;">⚡ Instant Setup</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Download and run. Zero configuration required. Works immediately with all your devices.</p>
-            </div>
-            <div class="value-prop">
-                <h3 style="color: #34C759; margin-bottom: 16px; font-weight: 700;">🔒 Privacy Protected</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Your data stays on your Mac. Local processing. Transparent about what's shared.</p>
-            </div>
-            <div class="value-prop">
-                <h3 style="color: #FF9500; margin-bottom: 16px; font-weight: 700;">🎨 Apple-Native Design</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Feels like Apple built it. Every animation, every detail crafted to perfection.</p>
-            </div>
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Experience everything NotchPro has to offer with our risk-free trial</p>
         </div>
         
         <div class="pricing-card">
-            <div class="trial-highlight">
-                <h3>48-Hour Free Trial</h3>
-                <p>Experience everything NotchPro has to offer with full access for 48 hours. No credit card required.</p>
+            <div class="trial-badge">48-Hour Free Trial</div>
+            
+            <div class="price-container">
+                <div class="price">$2<span class="price-period">/month</span></div>
             </div>
             
-            <div class="price">$2<span class="price-period">/month</span></div>
-            <div style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); margin-bottom: 40px; position: relative; z-index: 1;">Everything included. Cancel anytime.</div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 40px 0; text-align: left; position: relative; z-index: 1;">
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
-                    Real-time AirPods monitoring
+            <div class="pricing-features">
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
+                    AirPods battery monitoring
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
-                    Universal music control
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
+                    Universal music controls
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
                     Smart calendar integration
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
                     Privacy-focused AI assistant
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
                     Native macOS design
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; font-weight: 600;">
-                    <span style="color: #34C759; font-size: 1.1rem;">✓</span>
-                    Premium support
+                <div class="pricing-feature">
+                    <span class="pricing-feature-icon">✓</span>
+                    Premium support included
                 </div>
             </div>
             
-            <a href="#download" class="cta-button" style="margin-top: 24px;">Start Your 48-Hour Free Trial</a>
-            <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); margin-top: 24px; position: relative; z-index: 1;">Works with MacBook Pro 2021+ • macOS Monterey 12.0+</p>
+            <div class="pricing-cta-container">
+                <a href="#download" class="cta-button">Start Free Trial</a>
+                <div class="pricing-guarantee">
+                    No credit card required • Cancel anytime • MacBook Pro 2021+ required
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1352,59 +1314,57 @@
         </div>
     </section>
 
-    <!-- Enhanced FAQ with Critical Questions Open -->
+    <!-- Clean FAQ Section -->
     <section class="faq" id="faq">
-        <h2>Everything You Need to Know</h2>
+        <h2>Frequently Asked Questions</h2>
         
-        <!-- Critical FAQ - Mac Compatibility (Open by default) -->
-        <div class="faq-item critical active">
+        <div class="faq-item active">
             <div class="faq-question">
-                Which Mac models support NotchPro's Dynamic Island features?
+                Which Mac models support NotchPro?
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                NotchPro works perfectly with all MacBook Pro models with a notch (2021 and later). Our Mac notch customization requires macOS Monterey 12.0 or later for full AirPods battery monitoring and Spotify integration features.
+                NotchPro works with all MacBook Pro models with a notch (2021 and later). Requires macOS Monterey 12.0 or later for full functionality.
             </div>
         </div>
 
-        <!-- Critical FAQ - Trial Length (Open by default) -->
-        <div class="faq-item critical active">
+        <div class="faq-item active">
             <div class="faq-question">
-                How long is the free trial and what's included?
+                How does the free trial work?
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                You get 48 hours of full access to all NotchPro features — AirPods battery monitoring, Spotify integration, AI assistant, calendar reminders, and more. No credit card required. If you love it, continue for just $2/month.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question">
-                Does this Mac productivity tool affect system performance?
-                <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-                NotchPro uses less than 1% CPU and minimal memory. Your Mac will feel just as fast as before, with optimized rendering for smooth 60fps animations and instant responsiveness.
+                Get 48 hours of full access to all features. No credit card required. If you continue after the trial, you'll be charged $2/month.
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                What music apps work with the Spotify Mac integration?
+                Does NotchPro affect Mac performance?
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                Full support for Spotify, Apple Music, YouTube Music, SoundCloud, and any app using macOS media controls. Our mini music player for Mac adapts to your favorite streaming service automatically.
+                NotchPro is optimized for minimal resource usage, consuming less than 1% CPU and minimal memory while maintaining smooth performance.
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                How does the AI assistant for Mac work?
+                What music apps are supported?
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                Our smart Mac utility includes a privacy-focused AI assistant that processes requests locally when possible. Ask questions, get calendar insights, or request quick calculations — all without compromising your data privacy.
+                Full support for Spotify, Apple Music, YouTube Music, SoundCloud, and any app using standard macOS media controls.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How does the AI assistant work?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Our privacy-focused AI processes requests locally when possible, providing quick calculations, suggestions, and workflow optimizations without compromising your data.
             </div>
         </div>
 
@@ -1414,7 +1374,7 @@
                 <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer">
-                Absolutely! Cancel anytime with one click. No questions asked, no cancellation fees. Your subscription remains active until the end of your current billing period.
+                Yes, cancel anytime with one click. No questions asked, no fees. Your subscription remains active until the end of your billing period.
             </div>
         </div>
     </section>
@@ -1462,7 +1422,7 @@
 
         function initializeLoadingStates() {
             // Add loading class to elements initially
-            const elements = document.querySelectorAll('.journey-step, .feature-chapter, .testimonial, .stat-item, .value-prop, .faq-item');
+            const elements = document.querySelectorAll('.journey-step, .feature-chapter, .testimonial, .stat-item, .faq-item');
             elements.forEach(el => el.classList.add('loading'));
             
             // Remove loading states with staggered timing
@@ -1488,35 +1448,22 @@
                 });
             });
 
-            // Value prop hover effects
-            document.querySelectorAll('.value-prop').forEach(item => {
-                item.addEventListener('mousemove', (e) => {
-                    const rect = item.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+            // Keyword tag interactions
+            document.querySelectorAll('.keyword-tag').forEach(tag => {
+                tag.addEventListener('click', (e) => {
+                    // Visual feedback
+                    tag.style.transform = 'translateY(-4px) scale(1.1)';
+                    setTimeout(() => {
+                        tag.style.transform = 'translateY(-2px) scale(1.05)';
+                    }, 200);
                     
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-                    
-                    item.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
-                });
-            });
-
-            // Feature placeholder interactions
-            document.querySelectorAll('.feature-placeholder').forEach(placeholder => {
-                placeholder.addEventListener('mouseenter', () => {
-                    placeholder.style.background = 'rgba(0, 122, 255, 0.12)';
-                });
-
-                placeholder.addEventListener('mouseleave', () => {
-                    placeholder.style.background = 'rgba(255, 255, 255, 0.05)';
+                    // SEO tracking
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'keyword_interaction', {
+                            'event_category': 'seo',
+                            'event_label': tag.textContent
+                        });
+                    }
                 });
             });
         }
@@ -1555,7 +1502,7 @@
             }, observerOptions);
 
             // Observe elements with staggered animations
-            document.querySelectorAll('.journey-step, .feature-chapter, .features-intro, .testimonial, .value-prop, .faq-item').forEach(element => {
+            document.querySelectorAll('.journey-step, .feature-chapter, .features-intro, .testimonial, .faq-item').forEach(element => {
                 observer.observe(element);
             });
 
@@ -1631,39 +1578,30 @@
                     const faqItem = question.parentElement;
                     const isActive = faqItem.classList.contains('active');
                     
-                    // Close all non-critical FAQ items
-                    document.querySelectorAll('.faq-item:not(.critical)').forEach(item => {
-                        item.classList.remove('active');
-                        const icon = item.querySelector('.faq-icon');
-                        icon.style.transform = 'rotate(0deg) scale(1)';
-                    });
+                    // Toggle clicked item
+                    if (isActive) {
+                        faqItem.classList.remove('active');
+                        const icon = question.querySelector('.faq-icon');
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        faqItem.classList.add('active');
+                        const icon = question.querySelector('.faq-icon');
+                        icon.style.transform = 'rotate(45deg)';
+                    }
                     
-                    // Toggle clicked item if it's not critical or if it's critical and active
-                    if (!faqItem.classList.contains('critical') || (faqItem.classList.contains('critical') && isActive)) {
-                        if (!isActive) {
-                            faqItem.classList.add('active');
-                            const icon = question.querySelector('.faq-icon');
-                            icon.style.transform = 'rotate(45deg) scale(1.1)';
-                        } else if (faqItem.classList.contains('critical')) {
-                            faqItem.classList.remove('active');
-                            const icon = question.querySelector('.faq-icon');
-                            icon.style.transform = 'rotate(0deg) scale(1)';
-                        }
-                        
-                        // Enhanced visual feedback
-                        faqItem.style.transform = 'translateY(-2px)';
-                        setTimeout(() => {
-                            faqItem.style.transform = 'translateY(0)';
-                        }, 300);
-                        
-                        // SEO tracking for FAQ interactions
-                        if (typeof gtag !== 'undefined') {
-                            const questionText = question.textContent.replace('+', '').trim();
-                            gtag('event', 'faq_interaction', {
-                                'event_category': 'engagement',
-                                'event_label': questionText
-                            });
-                        }
+                    // Enhanced visual feedback
+                    faqItem.style.transform = 'translateY(-2px)';
+                    setTimeout(() => {
+                        faqItem.style.transform = 'translateY(0)';
+                    }, 300);
+                    
+                    // SEO tracking for FAQ interactions
+                    if (typeof gtag !== 'undefined') {
+                        const questionText = question.textContent.replace('+', '').trim();
+                        gtag('event', 'faq_interaction', {
+                            'event_category': 'engagement',
+                            'event_label': questionText
+                        });
                     }
                 });
             });
@@ -1753,25 +1691,6 @@
                     }
                 });
             });
-
-            // Enhanced keyword tag interactions
-            document.querySelectorAll('.keyword-tag').forEach(tag => {
-                tag.addEventListener('click', (e) => {
-                    // Visual feedback
-                    tag.style.transform = 'translateY(-4px) scale(1.1)';
-                    setTimeout(() => {
-                        tag.style.transform = 'translateY(-2px) scale(1.05)';
-                    }, 200);
-                    
-                    // SEO tracking
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'keyword_interaction', {
-                            'event_category': 'seo',
-                            'event_label': tag.textContent
-                        });
-                    }
-                });
-            });
         }
 
         // Enhanced smooth scrolling
@@ -1842,26 +1761,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Which Mac models support NotchPro's Dynamic Island features?",
+          "name": "Which Mac models support NotchPro?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "NotchPro works perfectly with all MacBook Pro models with a notch (2021 and later). Our Mac notch customization requires macOS Monterey 12.0 or later for full AirPods battery monitoring and Spotify integration features."
+            "text": "NotchPro works with all MacBook Pro models with a notch (2021 and later). Requires macOS Monterey 12.0 or later for full functionality."
           }
         },
         {
           "@type": "Question",
-          "name": "How long is the free trial and what's included?",
+          "name": "How does the free trial work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You get 48 hours of full access to all NotchPro features — AirPods battery monitoring, Spotify integration, AI assistant, calendar reminders, and more. No credit card required."
+            "text": "Get 48 hours of full access to all features. No credit card required. If you continue after the trial, you'll be charged $2/month."
           }
         },
         {
           "@type": "Question", 
-          "name": "What music apps work with the Spotify Mac integration?",
+          "name": "What music apps are supported?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Full support for Spotify, Apple Music, YouTube Music, SoundCloud, and any app using macOS media controls. Our mini music player for Mac adapts to your favorite streaming service automatically."
+            "text": "Full support for Spotify, Apple Music, YouTube Music, SoundCloud, and any app using standard macOS media controls."
           }
         }
       ]
